@@ -2,8 +2,7 @@ package br.com.ada.letscode.monitoramentoEolico.controller;
 
 import br.com.ada.letscode.monitoramentoEolico.domain.ComplexoEolico;
 import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +11,9 @@ import java.util.List;
 @RequestMapping("complexo-eolicos")
 public class ComplexoEolicoController {
 
+    private final ComplexoEolicoService complexoEolicoService;
 
-    private ComplexoEolicoService complexoEolicoService;
-
-    @Autowired
-    public void setComplexoEolicoService(ComplexoEolicoService complexoEolicoService) {
+    public ComplexoEolicoController(ComplexoEolicoService complexoEolicoService) {
         this.complexoEolicoService = complexoEolicoService;
     }
 
@@ -31,19 +28,18 @@ public class ComplexoEolicoController {
     }
 
     @PostMapping
-    ComplexoEolico salvar(@RequestBody ComplexoEolico complexoEolico) {
-        return complexoEolicoService.salvar(complexoEolico);
+    ComplexoEolico save(@RequestBody ComplexoEolico complexoEolico) {
+        return complexoEolicoService.save(complexoEolico);
     }
 
+    @PutMapping("{id}")
+    ComplexoEolico update(@PathVariable Long id, @RequestBody ComplexoEolico complexoEolico) {
+        return complexoEolicoService.update(id, complexoEolico);
+    }
 
-    //DELETE -> localhost:8080/complexo-eolicos/{id}
-
-    //PUT -> localhost:8080/complexo-eolicos/{id}
-    /**
-     * body {
-     *     nome:
-     *     endereco:
-     * }
-     */
+    @DeleteMapping("{id}")
+    void delete(@PathVariable Long id){
+        complexoEolicoService.delete(id);
+    }
 
 }

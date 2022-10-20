@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ComplexoEolicoService {
     List<ComplexoEolico> list();
-    ComplexoEolico salvar(ComplexoEolico complexoEolico);
+    ComplexoEolico save(ComplexoEolico complexoEolico);
     ComplexoEolico getById(Long id);
+    ComplexoEolico update(Long id, ComplexoEolico complexoEolico);
+    void delete(Long id);
 }
