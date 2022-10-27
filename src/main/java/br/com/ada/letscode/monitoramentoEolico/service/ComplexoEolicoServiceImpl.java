@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -15,13 +15,12 @@ public class ComplexoEolicoServiceImpl implements ComplexoEolicoService {
 
     private final ComplexoEolicoRepository complexoEolicoRepository;
 
-    private List<ComplexoEolico> list = new ArrayList<>();
-
-    private Long count = 0L;
-
     @Override
-    public List<ComplexoEolico> list() {
-        return IterableUtils.toList(complexoEolicoRepository.findAll());
+    public List<ComplexoEolico> list(String name) {
+        if (name == null) {
+            return IterableUtils.toList(complexoEolicoRepository.findAll());
+        }
+        return IterableUtils.toList(complexoEolicoRepository.findAllByNameContains(name));
     }
 
 
@@ -32,20 +31,17 @@ public class ComplexoEolicoServiceImpl implements ComplexoEolicoService {
 
     @Override
     public ComplexoEolico getById(Long id) {
-        return list.stream().filter(complexoEolico -> complexoEolico.getId().equals(id)).findFirst().orElseGet(null);
+        return complexoEolicoRepository.findById(id).get();
     }
 
     @Override
     public ComplexoEolico update(Long id, ComplexoEolico complexoEolico) {
         complexoEolico.setId(id);
-        int index = list.indexOf(complexoEolico);
-        return list.set(index, complexoEolico);
+        return complexoEolicoRepository.save(complexoEolico);
     }
 
     @Override
     public void delete(Long id) {
-        ComplexoEolico complexoEolico = new ComplexoEolico();
-        complexoEolico.setId(id);
-        list.remove(complexoEolico);
+        complexoEolicoRepository.deleteById(id);
     }
 }

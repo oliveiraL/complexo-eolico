@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -14,14 +15,11 @@ public class ComplexoEolico {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String nome;
-    private Boolean actived;
+    private String name;
+    private boolean activated;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Endereco endereco;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        ComplexoEolico that = (ComplexoEolico) o;
-        return id.equals(that.id);
-    }
+    @OneToMany(mappedBy = "complexoEolico")
+    private List<ParqueEolico> parqueEolicos;
 }
