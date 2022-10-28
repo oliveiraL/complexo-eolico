@@ -21,6 +21,7 @@ public class ParqueEolico {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "complexo_eolico_id")
     private ComplexoEolico complexoEolico;
 }
