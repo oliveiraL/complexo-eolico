@@ -14,7 +14,7 @@ public class ParqueEolicoController {
     private final ParqueEolicoService parqueEolicoService;
 
     @PostMapping
-    public ParqueEolico save(@RequestBody ParqueEolico parqueEolico, @PathVariable Long complexoEolicoId) {
+    public ParqueEolico save(@RequestBody ParqueEolico parqueEolico, @PathVariable Long complexoEolicoId){
         return parqueEolicoService.save(parqueEolico, complexoEolicoId);
     }
 }

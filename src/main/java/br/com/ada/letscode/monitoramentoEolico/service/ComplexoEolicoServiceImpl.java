@@ -1,6 +1,7 @@
 package br.com.ada.letscode.monitoramentoEolico.service;
 
 import br.com.ada.letscode.monitoramentoEolico.domain.ComplexoEolico;
+import br.com.ada.letscode.monitoramentoEolico.exceptions.ComplexoEolicoNotFound;
 import br.com.ada.letscode.monitoramentoEolico.repository.ComplexoEolicoRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.IterableUtils;
@@ -31,7 +32,7 @@ public class ComplexoEolicoServiceImpl implements ComplexoEolicoService {
 
     @Override
     public ComplexoEolico getById(Long id) {
-        return complexoEolicoRepository.findById(id).get();
+        return complexoEolicoRepository.findById(id).orElseThrow(ComplexoEolicoNotFound::new);
     }
 
     @Override

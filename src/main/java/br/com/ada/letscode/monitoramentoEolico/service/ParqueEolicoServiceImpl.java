@@ -2,6 +2,7 @@ package br.com.ada.letscode.monitoramentoEolico.service;
 
 import br.com.ada.letscode.monitoramentoEolico.domain.ComplexoEolico;
 import br.com.ada.letscode.monitoramentoEolico.domain.ParqueEolico;
+import br.com.ada.letscode.monitoramentoEolico.exceptions.ComplexoEolicoNotFound;
 import br.com.ada.letscode.monitoramentoEolico.repository.ComplexoEolicoRepository;
 import br.com.ada.letscode.monitoramentoEolico.repository.ParqueEolicoRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,6 @@ public class ParqueEolicoServiceImpl implements ParqueEolicoService {
             parqueEolico.setComplexoEolico(complexoEolico);
             return parqueEolicoRepository.save(parqueEolico);
         }
-        return null;
+        throw new ComplexoEolicoNotFound();
     }
 }
