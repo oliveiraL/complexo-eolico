@@ -1,8 +1,7 @@
 package br.com.ada.letscode.monitoramentoEolico.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +10,9 @@ import java.util.List;
 @Table
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComplexoEolico {
 
     @Id
