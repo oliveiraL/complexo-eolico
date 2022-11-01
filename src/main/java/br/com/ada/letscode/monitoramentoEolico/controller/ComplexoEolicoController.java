@@ -9,6 +9,7 @@ import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoServiceImpl
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,7 +57,7 @@ public class ComplexoEolicoController {
     }
 
     @PostMapping
-    ComplexoEolico save(@RequestBody ComplexoEolicoSaveDTO complexo) {
+    ComplexoEolico save(@RequestBody @Valid ComplexoEolicoSaveDTO complexo) {
         ComplexoEolico complexoEolico = ComplexoEolico.builder()
                 .name(complexo.getName())
                 .endereco(Endereco.builder()
