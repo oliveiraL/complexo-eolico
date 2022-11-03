@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "6ed8bfa5-d718-4c17-8386-fff84a9e0fad",
+		"name": "Complexo Eolico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22657263"
+	},
+	"item": [
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Complexo Eolico",
+			"item": [
+				{
+					"name": "Lista complexo eolicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/complexo-eolicos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"complexo-eolicos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista todos os complexo eolicos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/complexo-eolicos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"complexo-eolicos"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"nome do complexo eolico\",\n        \"id\": 1\n    }\n]"
+						},
+						{
+							"name": "Lista complexo eolicos por nome",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/complexo-eolicos?name=nome",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"complexo-eolicos"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "nome"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"nome do complexo eolico\",\n        \"id\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Criar complexo eolico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"endereco\": {\n        \"cep\": \"12345678\",\n        \"logradouro\": \"logradouro\",\n        \"numero\": \"numero\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/complexo-eolicos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"complexo-eolicos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Criar complexo eolico",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"nome\",\n    \"endereco\": {\n        \"cep\": \"12345678\",\n        \"logradouro\": \"logradouro\",\n        \"numero\": \"numero\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/complexo-eolicos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"complexo-eolicos"
+									]
+								}
+							},
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 101,\n    \"name\": \"nome\",\n    \"activated\": false,\n    \"endereco\": {\n        \"id\": 102,\n        \"cep\": \"12345678\",\n        \"logradouro\": \"logradouro\",\n        \"numero\": \"numero\"\n    },\n    \"parqueEolicos\": null\n}"
+						},
+						{
+							"name": "Criar complexo eolico erro de validação",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"endereco\": {\n        \"cep\": \"12345678\",\n        \"logradouro\": \"logradouro\",\n        \"numero\": \"numero\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/complexo-eolicos",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"complexo-eolicos"
+									]
+								}
+							},
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation failed for argument\",\n    \"code\": \"ERROR0001\",\n    \"error\": [\n        {\n            \"name\": \"name\",\n            \"error\": \"must not be blank\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

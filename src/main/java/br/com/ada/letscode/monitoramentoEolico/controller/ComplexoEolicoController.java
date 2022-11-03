@@ -7,6 +7,7 @@ import br.com.ada.letscode.monitoramentoEolico.dto.ComplexoEolicoSaveDTO;
 import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoService;
 import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoServiceImpl;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -57,6 +58,7 @@ public class ComplexoEolicoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     ComplexoEolico save(@RequestBody @Valid ComplexoEolicoSaveDTO complexo) {
         ComplexoEolico complexoEolico = ComplexoEolico.builder()
                 .name(complexo.getName())
