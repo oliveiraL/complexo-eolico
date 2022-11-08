@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RestController
 @RequestMapping("files")
 @RequiredArgsConstructor
 public class FileController {
@@ -29,11 +28,11 @@ public class FileController {
                 .name(newFile.getName())
                 .type(newFile.getType())
                 .size(newFile.getData().length)
-                .url("/files/" + newFile.getId())
+                .url("/files/" + newFile.getId()+ "/download")
                 .build();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{id}/download")
     public ResponseEntity<byte[]> getFile(@PathVariable Long id) {
         File file = fileService.getById(id);
         return ResponseEntity.ok()
@@ -49,7 +48,7 @@ public class FileController {
                 .name(file.getName())
                 .type(file.getType())
                 .size(file.getData().length)
-                .url("/files/" + file.getId())
+                .url("/files/" + file.getId() + "/download")
                 .build()).toList();
     }
 
