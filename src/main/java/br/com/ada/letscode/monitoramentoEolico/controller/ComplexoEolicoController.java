@@ -5,14 +5,10 @@ import br.com.ada.letscode.monitoramentoEolico.domain.Endereco;
 import br.com.ada.letscode.monitoramentoEolico.dto.ComplexoEolicoDTO;
 import br.com.ada.letscode.monitoramentoEolico.dto.ComplexoEolicoSaveDTO;
 import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoService;
-import br.com.ada.letscode.monitoramentoEolico.service.ComplexoEolicoServiceImpl;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -49,7 +45,6 @@ public class ComplexoEolicoController {
 
     @GetMapping
     List<ComplexoEolicoDTO> list(String name) {
-
         List<ComplexoEolico> list = complexoEolicoService.list(name);
 
         return list.stream().map(complexo -> ComplexoEolicoDTO.builder()
